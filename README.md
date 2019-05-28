@@ -1,9 +1,10 @@
 # ctrl-alt-vim
 
-A fork of [vim-anywhere](https://github.com/cknadler/vim-anywhere/)
+A fork of [vim-anywhere](https://github.com/cknadler/vim-anywhere/), a simple script that launches gvim and copies content to a terminal on write/exit.
 
-If you want better installer and non-GNOME support, use vim-anywhere.
-If you want a simple, opionated launcher, use or fork.
+If you want a better installer and non-GNOME support: use vim-anywhere.
+
+If you want a simple, opinionated launcher: use this or fork yourself.
 
 - Removes OS X support
 - Removes installer
@@ -11,12 +12,24 @@ If you want a simple, opionated launcher, use or fork.
 - Uses mktemp
 - Deletes temp file after
 
-
 ## Installation
 
 - Copy ctrl-alt-vim.sh to `$HOME/bin/` it already exists and in your path, right
 - Run `shortcuts-gnome.sh` to install GNOME shortcuts.
-- `ctrl-alt-v` to launch
+
+## Usage
+
+Use `ctrl-alt-v` to launch
+
+Create `$HOME/.gvimrc.min` to customize for this instance:
+
+To remove gvim menu and toolbar:
+
+```vim
+set guioptions-=m  "menu bar
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
+```
 
 
 ## Uninstall
