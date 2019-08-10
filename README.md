@@ -11,19 +11,24 @@ If you want a simple, opinionated launcher: use this or fork yourself.
 - Starts in INSERT mode
 - Uses mktemp
 - Deletes temp file after
+- Uses markdown file
 
 ## Installation
 
-- Copy ctrl-alt-vim.sh to `$HOME/bin/` it already exists and in your path, right
+- Copy ctrl-alt-vim.sh to `$HOME/bin/`
 - Run `shortcuts-gnome.sh` to install GNOME shortcuts.
 
 ## Usage
 
-Use `ctrl-alt-v` to launch
+Use `ctrl-alt-v` to launch, type your thing, save-quit `:wq`
 
-Create `$HOME/.gvimrc.min` to customize for this instance:
+The copy to the clipboard only works if you save the file, if you `q!` nothing is copied.
 
-To remove gvim menu and toolbar:
+## Customize
+
+If `$HOME/.gvimrc.min` exists it will load on the command-line using, I've found that this does not work well for me. I don't use gvim for anything else, so I use a custom .gvimrc to configure, including in this repo.
+
+You can also add options to your normal .vimrc and customize, for example to remove gvim menu and toolbar:
 
 ```vim
 set guioptions-=m  "menu bar
