@@ -10,8 +10,8 @@
 # When closed copy the contents to the system clipboard
 # Remove temporary file
 
-TMPFILE_DIR="$(mktemp -d /tmp/vim-anywhere.XXX)"
-TMPFILE_TEMPLATE=doc-$(date +"%y%m%d%H%M%S").XXX
+TMPFILE_DIR="$(mktemp -d /tmp/ctrl-alt-vim.XXX)"
+TMPFILE="${TMPFILE_DIR}/vim-$(date +"%y%m%d%H%M%S").md"
 VIM_OPTS="--nofork -c startinsert"
 
 # Use ~/.gvimrc.min or ~/.vimrc.min if one exists
@@ -23,8 +23,6 @@ for vimrc_path in "${VIMRC_PATH[@]}"; do
         break
     fi
 done
-
-TMPFILE="$(mktemp -p $TMPFILE_DIR -t $TMPFILE_TEMPLATE)"
 
 function remove_tmp_dir() {
 	rm -rf $TMPFILE_DIR
