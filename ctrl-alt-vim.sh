@@ -6,23 +6,21 @@
 # Author: Chris Knadler
 # Homepage: https://www.github.com/cknadler/vim-anywhere
 
-# Open a temporary file with Vim. 
+# Open a temporary file with Vim.
 # When closed copy the contents to the system clipboard
 # Remove temporary file
 
+# nvim-qt installs a gvim symlink
+if hash gvim 2>/dev/null; then
+	BIN=gvim
+else
+	echo "Please install nvim-qt or gvim"
+	exit
+fi
+
 TMPFILE_DIR="$(mktemp -d /tmp/ctrl-alt-vim.XXX)"
 TMPFILE="${TMPFILE_DIR}/vim-$(date +"%y%m%d%H%M%S").md"
-VIM_OPTS="--nofork -c startinsert"
-
-# Use ~/.gvimrc.min or ~/.vimrc.min if one exists
-VIMRC_PATH=($HOME/.gvimrc.min $HOME/.vimrc.min)
-
-for vimrc_path in "${VIMRC_PATH[@]}"; do
-    if [ -f $vimrc_path ]; then
-        VIM_OPTS+=" -u $vimrc_path"
-        break
-    fi
-done
+VIM_OPTS="--nofork"
 
 function remove_tmp_dir() {
 	rm -rf $TMPFILE_DIR
@@ -33,6 +31,10 @@ trap "remove_tmp_dir" EXIT SIGINT
 
 # Linux
 chmod o-r $TMPFILE # Make file only readable by you
-gvim $VIM_OPTS $TMPFILE
+
+# open file in vim
+$BIN $VIM_OPTS $TMPFILE
+
+# on exit, copy file to clipboard
 cat $TMPFILE | xclip -selection clipboard
 

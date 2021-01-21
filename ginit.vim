@@ -42,7 +42,7 @@ set smartcase
 set undolevels=1000
 
 " Gooey bits
-set guifont=Hack\ 15
+set guifont=Hack:h15
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
 
@@ -172,3 +172,5 @@ function! WordCount()
     endif
 endfunction
 
+" start in insert mode
+startinsert
